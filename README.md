@@ -11,6 +11,11 @@ clone repository and run command below with lastest nodejs:
 npm install
 ```
 
+Additionaly, on linux systems you should install sqlite3
+```
+sudo apt install sqlite
+```
+
 
 ## Running bot
 you can run this bot with lastest nodejs by executing:
