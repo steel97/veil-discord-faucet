@@ -7,7 +7,7 @@ After=network.target
 User=faucet
 KillMode=process
 WorkingDirectory=/home/faucet/veil-discord-faucet/
-ExecStart=node --experimental-specifier-resolution=node ./dist/index.js
+ExecStart=./veil_faucet
 Restart=always
 TimeoutSec=300
 RestartSec=5
