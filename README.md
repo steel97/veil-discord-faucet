@@ -23,16 +23,17 @@ libveil_light_plugin.so
 
 Additionaly, on linux systems you should install sqlite3
 ```
-sudo apt install sqlite
+sudo apt install libsqlite3-dev
 ```
 
 ## Build
 ```bash
+dart run nyxx_commands:compile ./bin/veil_faucet.dart --no-compile
 # for host os
-dart run nyxx_commands:compile ./bin/veil_faucet.dart --output ./veil_faucet
+dart compile exe ./out.g.dart --output ./veil_faucet.exe
 
 # for linux:
-dart compile exe ./bin/veil_faucet.dart --output ./veil_faucet --target-os=linux
+dart compile exe ./out.g.dart --output ./veil_faucet --target-os=linux
 ```
 
 
@@ -42,3 +43,6 @@ you can run this bot with lastest nodejs by executing:
 ```
 ./veil_faucet
 ```
+
+## Stopping bot
+./kill.sh
