@@ -1,7 +1,8 @@
 name: veil_faucet
 description: A sample command-line application.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+publish_to: none
+repository: https://github.com/steel97/veil-discord-faucet
 
 environment:
   sdk: ^3.9.0
@@ -10,6 +11,11 @@ environment:
 dependencies:
   path: ^1.9.0
   nyxx: ^6.7.0
+  nyxx_commands: ^6.0.4
+  dotenv: ^4.2.0
+  sqlite3: ^2.9.0
+  veil_light_plugin:
+    path: ./submodules/veil_light_plugin
 
 dev_dependencies:
   lints: ^6.0.0

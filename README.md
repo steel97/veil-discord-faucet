@@ -6,9 +6,19 @@ Simple bot which gives few veil to users who request it once per 24 hours (can b
 see [.env.example](.env.example)
 
 ## Installing bot
-clone repository and run command below with lastest nodejs:
+clone repository and run command below with lastest dart sdk:
 ```
-npm install
+dart pub get
+```
+
+```bash
+# copy required libs to root of the cloned repository
+# for windows:
+veil_light_plugin.dll
+# for linux
+libveil_light_plugin.so
+
+# this libraries can be found on binary distribution of veil_wallet (https://github.com/steel97/veil_wallet)
 ```
 
 Additionaly, on linux systems you should install sqlite3
@@ -16,10 +26,19 @@ Additionaly, on linux systems you should install sqlite3
 sudo apt install sqlite
 ```
 
+## Build
+```bash
+# for host os
+dart run nyxx_commands:compile ./bin/veil_faucet.dart --output ./veil_faucet
+
+# for linux:
+dart compile exe ./bin/veil_faucet.dart --output ./veil_faucet --target-os=linux
+```
+
 
 ## Running bot
 you can run this bot with lastest nodejs by executing:
 
 ```
-npm run start
+./veil_faucet
 ```

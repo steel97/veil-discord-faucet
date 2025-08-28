@@ -2,3 +2,9 @@
 .env
 config.json
 db.sqlite
+*.dll
+*.so
+*.dylib
+*.exe
+veil_faucet
+faucet-storage
