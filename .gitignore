@@ -1,5 +1,4 @@
-dist
-node_modules
+.dart_tool/
 .env
 config.json
 db.sqlite
