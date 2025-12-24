@@ -8,3 +8,4 @@ db.sqlite
 *.exe
 veil_faucet
 faucet-storage
+out.g.dart
