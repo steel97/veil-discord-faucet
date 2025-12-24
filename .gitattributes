@@ -1,0 +1,19 @@
+# Text files - force CRLF
+* text=auto eol=crlf
+
+# Binary files - don't touch
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.wasm binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.exe binary
+*.dll binary
+*.so binary
+
+# Or use the negating pattern:
+#*.png -text
+#*.wasm -text
