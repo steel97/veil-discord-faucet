@@ -11,6 +11,7 @@ Future processPayout(
   try {
     var payoutsPerCycle = int.parse(env['FAUCET_PAYOUTS_PER_CYCLE'] ?? '1');
     var payoutAmount = double.parse(env['FAUCET_PAYOUTS_AMOUNT'] ?? '1');
+    //var forceTxRefresh = bool.parse(env['FAUCET_TX_FORCE_REFRESH'] ?? 'false');
 
     var addresses = fetchQueue(payoutsPerCycle, payoutAmount);
     if (addresses.isEmpty) {
@@ -28,7 +29,7 @@ Future processPayout(
     }
     await address.fetchTxes();
 
-    var preparedUtxos = (await address.getUnspentOutputs())
+    var preparedUtxos = (await address.getUnspentOutputs(fetchIfCacheExists: false))
         .where((utxo) => !mempool!.contains(utxo.getId() ?? ''))
         .toList();
     var utxos = preparedUtxos
@@ -53,7 +54,7 @@ Future processPayout(
       }
     }
 
-    var actualBalance = await address.getBalance([]);
+    var actualBalance = await address.getBalance([], fetchIfCacheExists: false);
 
     if (currentAmount >= targetAmount) {
       var rawTx = await address.buildTransaction(
@@ -109,8 +110,9 @@ Future processPayout(
         print('waiting for change'); // log
       }
     }
-  } catch (e) {
-    print('payout failed with $e'); // error
+  } catch (e, c) {
+    print('payout failed with $e'); //
+    print('stack trace:\n$c'); // error
   }
 }
 
@@ -125,6 +127,7 @@ Future runService(NyxxGateway client, DotEnv env) async {
   var account = LightwalletAccount(wallet);
   var address = account.getAddress(AccountType.STEALTH);
   var delay = int.parse(env['FAUCET_PAYOUTS_DELAY'] ?? '60000');
+  print('running payout cycle');
   while (true) {
     await processPayout(address, client, env);
     await Future.delayed(Duration(milliseconds: delay));
